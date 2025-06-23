@@ -1,0 +1,8 @@
+.header {
+  background-image: url("../assets/brand-image.svg");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  height: 280px;
+  width: 100%;
+}
