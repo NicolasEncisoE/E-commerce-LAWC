@@ -28,8 +28,54 @@
   </head>
 
   <body>
+    <header class="header text-bg-primary">
+      <!-- Barra de navegación -->
+      <nav class="navbar bg-transparent navbar-expand-lg">
+        <div class="container-fluid">
+          <span
+            class="navbar-brand bg-transparent mb-0 h1 text-bg-primary fs-6 fw-normal"
+            >OShop</span
+          >
+          <i class="bi bi-cart2 btn btn-primary bg-transparent border-0"></i>
+        </div>
+      </nav>
+      <!-- Presentación de la marca -->
+      <div class="header-content text-center">
+        <h1>Online Shop</h1>
+        <h3 class="fw-semibold">50% OFF</h3>
+      </div>
+    </header>
+    <!-- Contenido principal -->
+    <main class="d-flex flex-column justify-content-between align-items-center">
+      <div class="searchbar">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text" class="form-control search-input" />
+      </div>
+      <div></div>
+    </main>
+    <!-- Pie de página -->
+    <footer
+      class="text-bg-primary text-center pt-4 d-flex flex-column justify-content-between"
+    >
+      <h3>Online Shop</h3>
+      <div class="d-flex flex-md-row flex-column justify-content-between mx-5">
+        <div
+          class="text-start d-flex flex-column justify-content-between gap-3 mb-4 flex-fill"
+        >
+          <h3 class="mb-2 fw-bold fs-5">Team members</h3>
+          <a class="text-white">Nicolás Enciso</a>
+          <a class="text-white">Brandon Maciel</a>
+        </div>
+        <div class="text-start d-flex flex-column gap-3 mb-4 flex-fill">
+          <h3 class="mb-2 fw-bold fs-5">GitHub</h3>
+          <a class="text-white">E-commerce-LAWC</a>
+        </div>
+        <div class="flex-fill d-none d-md-block"></div>
+      </div>
+      <p>&copy; OShop 2025</p>
+    </footer>
     <!-- Importación de javascript -->
-    <script src="scripts/index.js"></script>
+    <script type="module" src="scripts/index.js"></script>
     <!-- CND javascript de Bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
