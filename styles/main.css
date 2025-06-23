@@ -1,0 +1,6 @@
+main {
+  padding: 20px;
+  background: var(--bs-light);
+  width: 100%;
+  min-height: 500px;
+}
