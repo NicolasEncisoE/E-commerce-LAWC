@@ -1,52 +1,15 @@
-<aside id="sideNav" style="
-    position: fixed;
-    top: 0;
-    right: -300px;
-    width: 300px;
-    height: 100%;
-    background-color: white;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.3);
-    overflow-y: auto;
-    transition: right 0.3s ease;
-    padding: 1rem;
-    z-index: 1050;
-    box-sizing: border-box;
-" role="complementary" aria-label="Carrito de compras">
-  
-    <!-- Botón cerrar -->
-    <button id="btnCloseSideNav" style="
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: transparent;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-    " aria-label="Cerrar carrito">&times;</button>
+<aside id="sideNav" class="side-nav" role="complementary" aria-label="Carrito de compras">
+  <header class="side-nav-header">
+    <button id="btnCloseSideNav" class="side-nav-close-btn" aria-label="Cerrar carrito">&times;</button>
+    <h4 class="side-nav-title">Online Shop</h4>
+  </header>
 
-    <h4 style="margin-top: 2rem;">Carrito</h4>
-
-    <!-- contenido del carrito -->
-    <div id="cartItems" style="margin-bottom: 5rem;">
-        <p>Producto 1</p>
-        <p>Producto 2</p>
-        <p>Producto 3</p>
+  <div id="cartItems" class="side-nav-items"></div>
+  <div class="side-nav-actions">
+    <div class="d-grid gap-2">
+      <button id="btnFinalizarCompra" class="btn btn-success">Finalizar Compra</button>
+      <button id="btnConfirmDelete" class="btn btn-danger">Eliminar Compra</button>
     </div>
-
-    <!-- Botones de acción fijos abajo -->
-    <div style="
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 1rem;
-        background: white;
-        box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-    ">
-        <div class="d-grid gap-2">
-            <button id="btnFinalizarCompra" class="btn btn-success">Finalizar Compra</button>
-            <button id="btnEliminarCompra" class="btn btn-danger">Eliminar Compra</button>
-        </div>
-    </div>
-
+  </div>
+  <div id="modalContainer"></div>
 </aside>

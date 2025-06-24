@@ -1,20 +1,32 @@
-<!-- Modal Bootstrap Confirmar Eliminación -->
-<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      
-      <div class="modal-header">
-        <h5 class="modal-title" id="confirmDeleteModalLabel">¿Eliminar compra?</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+
+      <div class="modal-header"
+        style="background-color: #dc3545; color: white; display: flex; justify-content: center; align-items: center; position: relative;">
+        <h5 class="modal-title" id="confirmDeleteModalLabel" style="margin: 0;">¿Delete all products?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"
+          style="filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(0deg) brightness(0) contrast(100%); width: 32px; height: 32px; position: absolute; right: 1rem;"></button>
       </div>
 
-      <div class="modal-body">
-        ¿Está seguro que desea eliminar todos los productos del carrito?
+
+      <div class="modal-body text-center fs-1" style="color: #dc3545; font-weight: bold;">
+        &#10060; <!-- X roja grande -->
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button id="btnConfirmDelete" type="button" class="btn btn-danger">Eliminar</button>
+        <!-- NO: fondo rojo, texto blanco -->
+        <button type="button" class="btn" data-bs-dismiss="modal"
+          style="background-color: #D32F2F; color: white; border: none;">
+          NO
+        </button>
+
+        <!-- YES: borde rojo, texto rojo, fondo blanco -->
+        <button id="btnConfirmDelete" type="button" class="btn"
+          style="background-color: white; color: #dc3545; border: 2px solid #dc3545;">
+          YES
+        </button>
       </div>
 
     </div>

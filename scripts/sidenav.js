@@ -1,43 +1,89 @@
-const sideNavContainer = document.getElementById('sideNavContainer');
+import { getCart, clearCart } from './cart.js';
 
-fetch('/views/sidenav.html')
+export function renderSideNav() {
+  fetch('./views/sidenav.html')
     .then(res => res.text())
     .then(html => {
-        sideNavContainer.innerHTML = html;
+      const sideNavContainer = document.getElementById('sideNavContainer');
+      sideNavContainer.innerHTML = html;
 
-        const sideNavElement = document.getElementById('sideNav');
-        const btnToggleCart = document.getElementById('btnToggleCart');
-        const btnCloseSideNav = document.getElementById('btnCloseSideNav');
-        const btnFinalizarCompra = document.getElementById('btnFinalizarCompra');
-        const btnEliminarCompra = document.getElementById('btnEliminarCompra');
+      const sideNavElement = document.getElementById('sideNav');
+      const btnCloseCart = document.getElementById('btnCloseSideNav');
 
-        const productos = ['Producto 1', 'Producto 2', 'Producto 3'];
+      // Al hacer click en cerrar, saco la clase open para ocultar
+      btnCloseCart.addEventListener('click', () => {
+        sideNavElement.classList.remove('open');
+      });
 
-        btnToggleCart.addEventListener('click', () => {
-            if (sideNavElement.style.right === '0px') {
-                sideNavElement.style.right = '-300px';
-            } else {
-                sideNavElement.style.right = '0px';
-            }
-        });
+      renderCartItems();
 
-        btnCloseSideNav.addEventListener('click', () => {
-            sideNavElement.style.right = '-300px';
-        });
+      // Abro el sidenav agregando clase
+      sideNavElement.classList.add('open');
+    });
+}
 
-        btnFinalizarCompra.addEventListener('click', () => {
-            console.log('Finalizando compra con productos:', productos);
-        });
+function renderCartItems() {
+  const cartItemsContainer = document.getElementById('cartItems');
+  const carrito = getCart();
 
-        btnEliminarCompra.addEventListener('click', () => {
-            const modalElement = document.getElementById('confirmDeleteModal');
-            if (modalElement) {
-                const deleteModal = new bootstrap.Modal(modalElement);
-                deleteModal.show();
-            } else {
-                console.error('Modal de confirmación no encontrado');
-            }
-        });
+  if (carrito.length === 0) {
+    cartItemsContainer.innerHTML = '<p>El carrito está vacío.</p>';
+    return;
+  }
 
-    })
-    .catch(err => console.error('Error cargando el sidenav:', err));
+  cartItemsContainer.innerHTML = carrito.map(prod => `
+    <div class="border p-2 mb-2">
+      <h5>${prod.titulo}</h5>
+      <p>Precio: $${prod.precio}</p>
+    </div>
+  `).join('');
+}
+
+function openDeleteModal() {
+  fetch('./views/modals/modal-confirm-delete.html')
+    .then(res => res.text())
+    .then(html => {
+      const modalContainer = document.getElementById('modalContainer');
+      modalContainer.innerHTML = html;
+
+      const modalElement = modalContainer.querySelector('#confirmDeleteModal');
+      const bootstrapModal = new bootstrap.Modal(modalElement);
+
+      bootstrapModal.show();
+
+      // Removemos listeners previos para evitar duplicados (si es que abris el modal varias veces)
+      modalElement.querySelector('#btnConfirmDelete').replaceWith(modalElement.querySelector('#btnConfirmDelete').cloneNode(true));
+
+      modalElement.querySelector('#btnConfirmDelete').addEventListener('click', () => {
+        console.log('Compra eliminada');
+        clearCart();
+        bootstrapModal.hide();
+      });
+
+ modalElement.addEventListener('hidden.bs.modal', () => {
+  console.log('Modal cerrado, limpiando contenido y actualizando vista');
+  modalContainer.innerHTML = '';
+  renderCartItems();
+
+  // Forzar remover backdrop (por si quedó pegado)
+  const backdrop = document.querySelector('.modal-backdrop');
+  if (backdrop) backdrop.remove();
+});
+
+    });
+}
+
+
+
+document.addEventListener('click', (e) => {
+  if (e.target && e.target.id === 'btnConfirmDelete') {
+    openDeleteModal();
+  }
+});
+
+
+document.addEventListener('click', (e) => {
+  if (e.target && e.target.id === 'btnEliminarCompra') {
+    openDeleteModal();
+  }
+});
