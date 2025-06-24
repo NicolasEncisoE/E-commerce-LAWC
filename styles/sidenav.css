@@ -1,39 +1,34 @@
-.side-nav {
+#sideNavContainer {
   position: fixed;
   top: 0;
-  right: -300px; /* oculto al inicio */
+  right: 0;
+  z-index: 2000;
+  height: 100%;
+  width: 300px;
+  pointer-events: none;
+}
+
+.side-nav {
+
+  position: fixed;
+  top: 0;
+  right: -300px;
   width: 300px;
   height: 100%;
-  background-color: white; /* fondo blanco */
-  box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
   overflow-y: auto;
   transition: right 0.3s ease;
-  padding: 1rem;
+  padding: 0;
   box-sizing: border-box;
   pointer-events: auto;
   z-index: 1050;
-  color: black; /* texto negro por defecto */
 }
 
-/* Cuando está abierto */
 .side-nav.open {
   right: 0;
 }
 
-/* Header con fondo azul y texto blanco */
-.side-nav-header {
-  background-color: #0d6efd; /* azul bootstrap */
-  color: white;
-  padding: 1rem;
-  font-weight: bold;
-  font-size: 1.25rem;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Botón cerrar */
 .side-nav-close-btn {
   position: absolute;
   top: 10px;
@@ -42,31 +37,33 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: white; /* la X blanca sobre fondo azul */
 }
 
-/* Título */
 .side-nav-title {
-  margin: 0;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   font-weight: 600;
-  color: white;
 }
 
-/* Contenedor de items */
 .side-nav-items {
   overflow-y: auto;
   max-height: calc(100% - 200px);
   padding-bottom: 1rem;
-  color: black; /* texto negro normal */
 }
 
-/* Botones fijos abajo */
 .side-nav-actions {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   padding: 1rem;
-  background: white; /* fondo blanco */
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  background: white;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.side-nav-header {
+  background-color: var(--bs-primary);
+  color: white;
+  padding: 1rem;
+  position: relative;
 }
