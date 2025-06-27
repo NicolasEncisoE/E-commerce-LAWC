@@ -41,3 +41,17 @@ export function clearCart() {
   localStorage.removeItem(CART_KEY);
 }
 
+document.getElementById('btnAgregarCarrito').onclick = function () {
+  addToCart(producto);
+
+  Swal.fire({
+    icon: 'success',
+    title: '¡Agregado al carrito!',
+    text: `"${producto.titulo}" se agregó correctamente.`,
+    timer: 1500,
+    showConfirmButton: false
+  });
+
+  const modal = bootstrap.Modal.getInstance(document.getElementById('productoModal'));
+  modal.hide();
+};

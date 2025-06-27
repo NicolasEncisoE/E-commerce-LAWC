@@ -22,7 +22,7 @@
 </head>
 
 <body>
-<div id="toastContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1100;"></div>
+  <div id="toastContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1100;"></div>
 
   <header class="header text-bg-primary">
     <!-- Barra de navegación -->
@@ -39,7 +39,7 @@
     <div class="header-content text-center">
       <h1>Online Shop</h1>
       <h3 class="fw-semibold">50% OFF</h3>
-      <button id="btnAgregarProducto" class="btn btn-success mb-3">+</button>
+      <button id="btnAgregarCarrito" class="btn btn-success mb-3">+</button>
     </div>
   </header>
   <!-- Contenido principal -->
@@ -48,8 +48,13 @@
       <i class="bi bi-search search-icon"></i>
       <input type="text" class="form-control search-input" />
     </div>
-    <div></div>
+
+    <!-- Contenedor para los productos -->
+    <div id="productosContainer" class="container my-4">
+      <div class="row"></div>
+    </div>
   </main>
+
   <!-- Pie de página -->
   <footer class="text-bg-primary text-center pt-4 d-flex flex-column justify-content-between">
     <h3>Online Shop</h3>
