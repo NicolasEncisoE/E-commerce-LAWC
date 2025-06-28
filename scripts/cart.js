@@ -1,3 +1,6 @@
+import { productoActual } from './index.js';
+
+
 const CART_KEY = 'miCarrito';
 
 export function getCart() {
@@ -40,4 +43,30 @@ export function removeFromCart(productId) {
 export function clearCart() {
   localStorage.removeItem(CART_KEY);
 }
+
+
+document.addEventListener('click', function (e) {
+  if (e.target && e.target.id === 'btnAgregarCarrito') {
+    console.log('Carrito de compras abierto');
+
+    if (!productoActual) {
+      console.error('No hay producto seleccionado');
+      return;
+    }
+
+    addToCart(productoActual);
+
+    Swal.fire({
+      icon: 'success',
+      title: '¡Agregado al carrito!',
+      text: `"${productoActual.titulo}" se agregó correctamente.`,
+      timer: 1500,
+      showConfirmButton: false
+    });
+
+    const modal = bootstrap.Modal.getInstance(document.getElementById('productoModal'));
+    modal.hide();
+  }
+});
+
 
