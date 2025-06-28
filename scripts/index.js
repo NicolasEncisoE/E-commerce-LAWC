@@ -1,9 +1,13 @@
 import { renderSideNav } from './sidenav.js';
 import { productosMock } from '../mocks/mockProductos.js';
-import { addToCart } from './cart.js';
 
 const btnToggleCart = document.getElementById('btnToggleCart');
 const container = document.getElementById('productosContainer');
+
+export let productoActual = null;
+export function setProductoActual(producto) {
+  productoActual = producto;
+}
 
 fetch('/views/modals/modal-detail.html')
   .then(response => response.text())
@@ -15,14 +19,11 @@ fetch('/views/modals/modal-detail.html')
     console.error('Error cargando modal:', err);
   });
 
-// Solo después que el modal esté insertado, inicializamos:
 function inicializarApp() {
-  // Evento para abrir el carrito lateral
   btnToggleCart.addEventListener('click', () => {
     renderSideNav();
   });
 
-  // Generar las tarjetas de productos con evento para abrir modal
   productosMock.forEach(producto => {
     const card = document.createElement('div');
     card.className = 'col-md-4 mb-4';
@@ -36,44 +37,20 @@ function inicializarApp() {
       </div>
     </div>
   `;
-
     const button = card.querySelector('.btnVerDetalles');
     button.addEventListener('click', () => abrirModalProducto(producto));
-
     container.appendChild(card);
   });
- }
+}
 
-  // Función para abrir el modal con los datos del producto
-  function abrirModalProducto(producto) {
-    document.getElementById('productoModalLabel').innerText = producto.titulo;
-    document.getElementById('productoImagen').src = producto.imagen;
-    document.getElementById('productoPrecio').innerText = producto.precioUnitario;
-    document.getElementById('productoDescripcion').innerText = `Cantidad disponible: ${producto.cantidad}`;
+function abrirModalProducto(producto) {
+  setProductoActual(producto);
+  document.getElementById('productoModalLabel').innerText = producto.titulo;
+  document.getElementById('productoImagen').src = producto.imagen;
+  document.getElementById('productoPrecio').innerText = producto.precioUnitario;
+  document.getElementById('productoDescripcion').innerText = `Cantidad disponible: ${producto.cantidad}`;
+  const modal = new bootstrap.Modal(document.getElementById('productoModal'));
+  modal.show();
+}
 
-    const btnAgregar = document.getElementById('btnAgregarCarrito');
-
-    // Remplazamos el botón por uno nuevo para eliminar event listeners previos
-    const nuevoBtnAgregar = btnAgregar.cloneNode(true);
-    btnAgregar.parentNode.replaceChild(nuevoBtnAgregar, btnAgregar);
-
-    // Asignamos el nuevo listener sin riesgo de duplicados
-    nuevoBtnAgregar.addEventListener('click', () => {
-      addToCart(producto);
-
-      Swal.fire({
-        icon: 'success',
-        title: '¡Agregado al carrito!',
-        text: `"${producto.titulo}" se agregó correctamente.`,
-        timer: 1500,
-        showConfirmButton: false
-      });
-
-      const modal = bootstrap.Modal.getInstance(document.getElementById('productoModal'));
-      modal.hide();
-    });
-
-    const modal = new bootstrap.Modal(document.getElementById('productoModal'));
-    modal.show();
-  }
 
