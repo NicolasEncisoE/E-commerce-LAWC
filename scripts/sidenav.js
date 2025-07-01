@@ -26,16 +26,16 @@ function renderCartItems() {
   const carrito = getCart();
 
   if (carrito.length === 0) {
-    cartItemsContainer.innerHTML = '<p>El carrito está vacío.</p>';
+    cartItemsContainer.innerHTML = '<p>The cart is empty.</p>';
     return;
   }
 
   cartItemsContainer.innerHTML = carrito.map(prod => `
     <div class="card mb-3 w-100 text-center">
       <div class="card-body d-flex flex-column align-items-center">
-        <h5 class="card-title mb-3">${prod.titulo}</h5>
-        <img src="${prod.imagen}" alt="${prod.titulo}" class="img-fluid mb-3" style="max-height: 150px; object-fit: contain;">
-        <p class="card-text mb-3">Precio: $${prod.precioUnitario}</p>
+        <h5 class="card-title mb-3">${prod.title}</h5>
+        <img src="${prod.image}" alt="${prod.title}" class="img-fluid mb-3" style="max-height: 150px; object-fit: contain;">
+        <p class="card-text mb-3">Price: $${prod.price}</p>
         <div class="d-flex align-items-center justify-content-between w-100 gap-3">
           <span class="fw-bold fs-5">${prod.cantidad}</span>
           <div class="d-flex gap-2">
