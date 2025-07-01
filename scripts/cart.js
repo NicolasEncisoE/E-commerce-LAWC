@@ -1,4 +1,4 @@
-import { productoActual } from './index.js';
+import { productoActual } from './modal.js';
 
 
 const CART_KEY = 'miCarrito';
@@ -58,8 +58,8 @@ document.addEventListener('click', function (e) {
 
     Swal.fire({
       icon: 'success',
-      title: '¡Agregado al carrito!',
-      text: `"${productoActual.titulo}" se agregó correctamente.`,
+      title: 'Added to cart!',
+      text: `The product was added successfully.`,
       timer: 1500,
       showConfirmButton: false
     });
