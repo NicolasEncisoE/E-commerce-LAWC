@@ -25,7 +25,7 @@ Arquitectura: `views` + `scripts` + `styles`
 
 ### ![Caputa de app](docs/demo.gif)
 ---
-
+🔗 [👉 Acceder al demo en GitHub Pages](https://brandonmaciel1996.github.io/E-commerce-LAWC/)
   
 ### ⚙️ Requisitos previos
 - Tener instalado **Visual Studio Code** (o tu editor preferido)
