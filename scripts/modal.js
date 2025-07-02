@@ -2,13 +2,20 @@ import { renderSideNav } from './sidenav.js';
 import { getProducts } from './get-products.js';
 
 const btnToggleCart = document.getElementById('btnToggleCart');
+document.body.addEventListener('hidden.bs.modal', function (event) {
+  if (event.target.id === 'productoModal') {
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) backdrop.remove();
+  }
+});
+
 
 let productoActual = null;
 function setProductoActual(producto) {
   productoActual = producto;
 }
 
-fetch('/views/modals/modal-detail.html')
+fetch('views/modals/modal-detail.html')
   .then(response => response.text())
   .then(html => {
     document.body.insertAdjacentHTML('beforeend', html);
